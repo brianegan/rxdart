@@ -45,8 +45,8 @@ void main() {
       observable(_getStream())
           .flatMapLatest(_getOtherStream)
           .listen(expectAsync1((num result) {
-        expect(result, expectedOutput[count++]);
-      }, count: expectedOutput.length));
+            expect(result, expectedOutput[count++]);
+          }, count: expectedOutput.length));
 
       fakeAsync.elapse(new Duration(milliseconds: 1000));
     });

@@ -321,8 +321,7 @@ abstract class Observable<T> extends Stream<T> {
   /// emitted by the source Observable that emits the fewest items.
   ///
   /// http://rxmarbles.com/#zip
-  @Deprecated(
-      'For better strong mode support, use zip2, zip3, ... instead')
+  @Deprecated('For better strong mode support, use zip2, zip3, ... instead')
   factory Observable.zip(Iterable<Stream<dynamic>> streams, Function predicate,
           {bool asBroadcastStream: false}) =>
       new ZipObservable<T>(streams, predicate, asBroadcastStream);
@@ -757,6 +756,15 @@ abstract class Observable<T> extends Stream<T> {
   ///   const TypeToken<Map<Int, String>>();
   /// ```
   Observable<S> ofType<S>(TypeToken<S> typeToken);
+
+  /// Intercepts error events and switches to the given stream in that case
+  ///
+  /// The onErrorResumeNext operator intercepts an onError notification from
+  /// the source Observable and, instead of passing it through to any observers,
+  /// replaces it with some other item or sequence of items, potentially
+  /// allowing the resulting Observable to terminate normally or not to
+  /// terminate at all.
+  Observable<T> onErrorResumeNext(Stream<T> recoveryStream);
 
   /// Creates an Observable containing the value of a specified nested property
   /// from all elements in the Observable sequence. If a property can't be

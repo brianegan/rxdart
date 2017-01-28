@@ -4,16 +4,11 @@ import 'dart:async';
 import 'package:test/test.dart';
 import 'package:rxdart/rxdart.dart';
 
-Stream<int> _getStream() => new Stream<int>.fromIterable(
-    <int>[0, 1, 2]);
+Stream<int> _getStream() => new Stream<int>.fromIterable(<int>[0, 1, 2]);
 
 void main() {
   test('rx.Observable.timeInterval', () async {
-    const List<int> expectedOutput = const <int>[
-      0,
-      1,
-      2
-    ];
+    const List<int> expectedOutput = const <int>[0, 1, 2];
     int count = 0;
 
     observable(_getStream())

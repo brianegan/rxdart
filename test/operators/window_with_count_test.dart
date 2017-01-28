@@ -12,7 +12,9 @@ void main() {
     ];
     int count = 0;
 
-    Stream<Stream<int>> stream = observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4])).windowWithCount(2);
+    Stream<Stream<int>> stream =
+        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]))
+            .windowWithCount(2);
 
     stream.listen(expectAsync1((Stream<int> result) {
       // test to see if the combined output matches
@@ -34,7 +36,9 @@ void main() {
     ];
     int count = 0;
 
-    Stream<Stream<int>> stream = observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4])).windowWithCount(2, 1);
+    Stream<Stream<int>> stream =
+        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]))
+            .windowWithCount(2, 1);
 
     stream.listen(expectAsync1((Stream<int> result) {
       // test to see if the combined output matches
@@ -48,8 +52,9 @@ void main() {
   });
 
   test('rx.Observable.windowWithCount.asBroadcastStream', () async {
-    Stream<Stream<int>> stream =
-        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]).asBroadcastStream()).windowWithCount(2);
+    Stream<Stream<int>> stream = observable(
+            new Stream<int>.fromIterable(<int>[1, 2, 3, 4]).asBroadcastStream())
+        .windowWithCount(2);
 
     // listen twice on same stream
     stream.listen((_) {});
@@ -74,7 +79,9 @@ void main() {
       const <int>[3, 4]
     ];
     int count = 0;
-    Stream<Stream<int>> stream = observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4])).windowWithCount(2);
+    Stream<Stream<int>> stream =
+        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]))
+            .windowWithCount(2);
 
     subscription = stream.listen(expectAsync1((Stream<int> result) {
       // test to see if the combined output matches

@@ -23,7 +23,8 @@ void main() {
 
   test('rx.Observable.defaultIfEmpty.asBroadcastStream', () async {
     Stream<int> stream =
-        observable(new Observable<int>.just(1).asBroadcastStream()).defaultIfEmpty(-1);
+        observable(new Observable<int>.just(1).asBroadcastStream())
+            .defaultIfEmpty(-1);
 
     // listen twice on same stream
     stream.listen((_) {});

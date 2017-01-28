@@ -14,12 +14,13 @@ void main() {
         .tap((int value) => actualOutput.add(value))
         .listen(expectAsync1((_) {
           expect(actualOutput[count], expectedOutput[count++]);
-    }, count: 4));
+        }, count: 4));
   });
 
   test('rx.Observable.tap.asBroadcastStream', () async {
-    Stream<int> stream =
-        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]).asBroadcastStream()).tap((_) {});
+    Stream<int> stream = observable(
+            new Stream<int>.fromIterable(<int>[1, 2, 3, 4]).asBroadcastStream())
+        .tap((_) {});
 
     // listen twice on same stream
     stream.listen((_) {});

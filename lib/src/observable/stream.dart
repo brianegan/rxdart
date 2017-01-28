@@ -4,6 +4,7 @@ import 'package:rxdart/src/observable.dart' show Observable;
 import 'package:rxdart/src/operators/debounce.dart' show DebounceObservable;
 import 'package:rxdart/src/operators/defaultIfEmpty.dart'
     show DefaultIfEmptyObservable;
+import 'package:rxdart/src/operators/on_error_resume_next.dart';
 import 'package:rxdart/src/operators/retry.dart' show RetryObservable;
 import 'package:rxdart/src/operators/throttle.dart' show ThrottleObservable;
 import 'package:rxdart/src/operators/buffer_with_count.dart'
@@ -189,6 +190,11 @@ class StreamObservable<T> implements Observable<T> {
   @override
   Observable<S> ofType<S>(TypeToken<S> typeToken) {
     return new OfTypeObservable<T, S>(stream, typeToken);
+  }
+
+  @override
+  Observable<T> onErrorResumeNext(Stream<T> recoveryStream) {
+    return new OnErrorResumeNextObservable<T>(stream, recoveryStream);
   }
 
   @override

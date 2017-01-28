@@ -14,7 +14,9 @@ void main() {
       ];
       int count = 0;
 
-      Stream<List<int>> stream = observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4])).bufferWithCount(2);
+      Stream<List<int>> stream =
+          observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]))
+              .bufferWithCount(2);
 
       stream.listen(expectAsync1((List<int> result) {
         // test to see if the combined output matches
@@ -36,7 +38,9 @@ void main() {
     ];
     int count = 0;
 
-    Stream<List<int>> stream = observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4])).bufferWithCount(2, 1);
+    Stream<List<int>> stream =
+        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]))
+            .bufferWithCount(2, 1);
 
     stream.listen(expectAsync1((List<int> result) {
       // test to see if the combined output matches
@@ -49,8 +53,9 @@ void main() {
   });
 
   test('rx.Observable.bufferWithCount.asBroadcastStream', () async {
-    Stream<List<int>> stream =
-        observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]).asBroadcastStream()).bufferWithCount(2);
+    Stream<List<int>> stream = observable(
+            new Stream<int>.fromIterable(<int>[1, 2, 3, 4]).asBroadcastStream())
+        .bufferWithCount(2);
 
     // listen twice on same stream
     stream.listen((_) {});
@@ -70,7 +75,8 @@ void main() {
 
   test('rx.Observable.bufferWithCount.skip.shouldThrow', () async {
     try {
-      observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4])).bufferWithCount(2, 100);
+      observable(new Stream<int>.fromIterable(<int>[1, 2, 3, 4]))
+          .bufferWithCount(2, 100);
     } catch (e) {
       expect(e, isArgumentError);
     }

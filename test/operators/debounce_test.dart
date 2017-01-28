@@ -25,8 +25,8 @@ void main() {
       observable(_getStream())
           .debounce(const Duration(milliseconds: 200))
           .listen(expectAsync1((int result) {
-        expect(result, 4);
-      }, count: 1));
+            expect(result, 4);
+          }, count: 1));
 
       fakeAsync.elapse(new Duration(minutes: 1));
     });
