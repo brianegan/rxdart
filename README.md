@@ -28,6 +28,7 @@ allowing usage of this library in server side (or Flutter) projects as well.
     .min
     .ofType
     .onErrorResumeNext
+    .onErrorReturn
     .pluck
     .repeat
     .retry

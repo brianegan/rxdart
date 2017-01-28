@@ -198,6 +198,12 @@ class StreamObservable<T> implements Observable<T> {
   }
 
   @override
+  Observable<T> onErrorReturn(T returnValue) {
+    return new OnErrorResumeNextObservable<T>(
+        stream, new Observable<T>.just(returnValue));
+  }
+
+  @override
   Observable<T> interval(Duration duration) =>
       new IntervalObservable<T>(stream, duration);
 

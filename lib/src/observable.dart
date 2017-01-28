@@ -760,11 +760,17 @@ abstract class Observable<T> extends Stream<T> {
   /// Intercepts error events and switches to the given stream in that case
   ///
   /// The onErrorResumeNext operator intercepts an onError notification from
-  /// the source Observable and, instead of passing it through to any observers,
-  /// replaces it with some other item or sequence of items, potentially
-  /// allowing the resulting Observable to terminate normally or not to
-  /// terminate at all.
+  /// the source Observable. Instead of passing it through to any observers, it
+  /// replaces it with another Stream of items.
   Observable<T> onErrorResumeNext(Stream<T> recoveryStream);
+
+  /// instructs an Observable to emit a particular item when it encounters an
+  /// error, and then terminate normally
+  ///
+  /// The onErrorReturn operator intercepts an onError notification from
+  /// the source Observable. Instead of passing it through to any observers, it
+  /// replaces it with a given item, and then terminates normally.
+  Observable<T> onErrorReturn(T returnValue);
 
   /// Creates an Observable containing the value of a specified nested property
   /// from all elements in the Observable sequence. If a property can't be
