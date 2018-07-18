@@ -45,7 +45,7 @@ class SearchBloc {
         if (result.isEmpty) {
           yield SearchEmpty();
         } else {
-          yield SearchPopulated(result);
+          yield SearchPopulated(result.items);
         }
       } catch (e) {
         yield SearchError();

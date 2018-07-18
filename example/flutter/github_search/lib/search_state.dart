@@ -9,18 +9,44 @@ import 'package:github_search/github_api.dart';
 //
 // The State Stream responds to input from the View by accepting a
 // Stream<String>. We call this Stream the onTextChanged "intent".
-class SearchState {}
+class SearchState {
+  final bool loadingVisible;
+  final bool errorVisible;
+  final bool noTermVisible;
+  final bool resultsVisible;
+  final bool emptyVisible;
+  final List<SearchResultItem> items;
 
-class SearchLoading extends SearchState {}
-
-class SearchError extends SearchState {}
-
-class SearchNoTerm extends SearchState {}
-
-class SearchPopulated extends SearchState {
-  final SearchResult result;
-
-  SearchPopulated(this.result);
+  SearchState({
+    this.loadingVisible = false,
+    this.errorVisible = false,
+    this.noTermVisible = false,
+    this.resultsVisible = false,
+    this.emptyVisible = false,
+    this.items = const [],
+  });
 }
 
-class SearchEmpty extends SearchState {}
+class SearchLoading extends SearchState {
+  SearchLoading() : super(loadingVisible: true);
+}
+
+class SearchError extends SearchState {
+  SearchError() : super(errorVisible: true);
+}
+
+class SearchNoTerm extends SearchState {
+  SearchNoTerm() : super(noTermVisible: true);
+}
+
+class SearchPopulated extends SearchState {
+  SearchPopulated(List<SearchResultItem> items)
+      : super(
+          resultsVisible: true,
+          items: items,
+        );
+}
+
+class SearchEmpty extends SearchState {
+  SearchEmpty() : super(emptyVisible: true);
+}

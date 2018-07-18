@@ -74,24 +74,24 @@ class SearchScreenState extends State<SearchScreen> {
                   child: Stack(
                     children: <Widget>[
                       // Fade in an intro screen if no term has been entered
-                      SearchIntro(visible: state is SearchNoTerm),
+                      SearchIntro(visible: state.noTermVisible),
 
                       // Fade in an Empty Result screen if the search contained
                       // no items
-                      EmptyWidget(visible: state is SearchEmpty),
+                      EmptyWidget(visible: state.emptyVisible),
 
                       // Fade in a loading screen when results are being fetched
                       // from Github
-                      LoadingWidget(visible: state is SearchLoading),
+                      LoadingWidget(visible: state.loadingVisible),
 
                       // Fade in an error if something went wrong when fetching
                       // the results
-                      SearchErrorWidget(visible: state is SearchError),
+                      SearchErrorWidget(visible: state.errorVisible),
 
                       // Fade in the Result if available
                       SearchResultWidget(
-                        items:
-                            state is SearchPopulated ? state.result.items : [],
+                        items: state.items,
+                        visible: state.resultsVisible,
                       ),
                     ],
                   ),

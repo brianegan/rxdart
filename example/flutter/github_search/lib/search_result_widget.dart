@@ -5,9 +5,8 @@ class SearchResultWidget extends StatelessWidget {
   final List<SearchResultItem> items;
   final bool visible;
 
-  SearchResultWidget({Key key, @required this.items, bool visible})
-      : this.visible = visible ?? items.isNotEmpty,
-        super(key: key);
+  SearchResultWidget({Key key, @required this.items, @required this.visible})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
